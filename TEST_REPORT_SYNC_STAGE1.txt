@@ -1,0 +1,12 @@
+NOMI Sync Stage 1 — Test report
+
+PASS: node --check nomi-sync.js
+PASS: node --check nomi-cloud.js
+PASS: node --check server.js
+PASS: script load order verified (config -> cloud auth -> sync module)
+PASS: IndexedDB primary keys verified as `id` for all seven synchronized stores
+PASS: Existing records are added to local-only exclusion list on first activation
+PASS: Sync scope excludes attachments, settings, meta, photos and localStorage-only data
+
+NOT RUN: Browser integration, real Supabase RPC, and two-device conflict tests.
+Do not treat the stage as production-verified until those checks pass.

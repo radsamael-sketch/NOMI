@@ -1,0 +1,20 @@
+NOMI — Sync Stage 1
+
+Added:
+- Record-level cloud synchronization for core IndexedDB stores: tasks, planner_entries, planner_notes, events, journal, ideas, books.
+- First activation marks every record already present on this device as local-only. Those records are not uploaded, even if edited later.
+- A device with local data will not merge into a non-empty cloud account automatically; activation stops to prevent accidental overwrites.
+- An empty device downloads cloud records before regular sync.
+- New records and subsequent changes are queued and sent through public.nomi_apply_record.
+- Soft-deleted records are synchronized as tombstones.
+- Record-level last-write-wins arbitration is delegated to the Supabase RPC.
+- Automatic two-way refresh every 30 seconds and after reconnect; local writes trigger a debounced sync.
+
+Not included in this stage:
+- Photo gallery blobs and attachments.
+- Habits and localStorage extras (movies, discovery favorites, book reviews, dashboard preferences, palette).
+- Cross-device sync of settings.
+
+Validation:
+- JavaScript syntax checks passed with Node.js for nomi-sync.js and nomi-cloud.js.
+- This is a static validation only. A real two-device Supabase round-trip has not yet been performed.
